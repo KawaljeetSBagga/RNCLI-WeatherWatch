@@ -2,49 +2,61 @@
 
 Introducing *Weather Watch*, the app that delivers accurate weather forecasts, ensuring you’re always prepared for the day’s weather with a smile!
 
-This task is designed to evaluate your proficiency in mobile app development, particular with React Native and TypeScript.
+## Features
 
-## Exercise
+- **Location Search**: Users can search for locations using a search bar.
+- **Weather Display**: Current weather conditions and forecasts are displayed based on the selected location, including weather for the next 6 days of the week.
+- **Cross-Platform Compatibility**: The application runs smoothly on both Android and iOS platforms.
 
-Create a mobile application using React Native that encompasses the following:
+## Demo Videos
 
-- Display the location name, current temperature and an image representation of the weather using a location of your choice when the application opens.
-- Display a weekly weather forecast for the selected location.
-   - Display an average temperature, rounded up.
-   - Display an image that best represents the weather for the day.
-- Include a search function that allows users to look up weather by a location name.
-  - If there are multiple locations returned by the API, give the user an option to select one.
-  - When selecting a location, the weather forecast should update.
+### Android Demo
+Watch the application in action on Android:
 
-## Resources
+https://github.com/user-attachments/assets/f6e4ab42-2056-4c3c-8ff8-bed605f8c5fe
 
-- Use the [Open Meteo API](https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m&hourly=temperature_2m,weather_code) to obtain a weather forecast, changing the latitude and longitude where required. Don’t use any packages related to Open Meteo when interacting with the API.
-- Use the [Open Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search?name=) to obtain a latitude and longitude for a given location.
-- Use the helper function [getWeatherImage](./src/helpers/getWeatherImage.ts) to map between a WMO weather code coming from the Open Meteo API and an image representation of the weather.
+### iOS Demo
+See the application running on iOS:
 
-> Note: All APIs listed above are free to use without sign up.
+https://github.com/user-attachments/assets/dbb27956-21ca-43ae-958f-a81360acee3c
 
-## Requirements
+## Test Cases
 
-- Create a fork of this repository.
-- Use React Native and TypeScript.
-- Ensure the app works on iOS and Android.
-- Showcase your software’s testing capabilities to ensure it meets requirements by testing:
-   - One complex component.
-   - One helper function.
-   - One API request.
-- Ensure that the entire application test suite is passing.
-   - Please do not remove any tests from the current project.
-- Ensure that your solution accounts for edge cases and handles unusual or unexpected scenarios effectively.
-- Ensure that your code is passing TypeScript compiler and ESLint checks.
-   - These jobs have already been defined in package.json.
-- Don’t spend longer than 2 hours on this technical test.
-- Don’t focus too much time on the visual aspects of the app, favour simple layouts and basic styling using React Native libraries over using a UI kit.
+All the expected test cases have been written and executed successfully. Below is a screenshot of the test results demonstrating that the application is functioning as expected:
 
-> Keep in mind that your test submission (app and tests) can be evaluated in different timezones.
+<img width="840" alt="Screenshot 2024-10-17 at 4 06 30 PM" src="https://github.com/user-attachments/assets/46cfc6e5-5526-4a6f-98d6-8f643f7e43a7">
 
-## Submission
 
-Submit a link to your forked repository with your application contents. Make sure the link is accessible.
+**Note**: The requirement was to test one complex component - `SearchLocation` in my case, one helper function `getWeatherImage`, and one API. However, I was able to achieve tests for both APIs.
 
-**Happy Coding**
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/KawaljeetSBagga/RNCLI-WeatherWatch.git
+
+2. Navigate into the project directory:
+   ```bash
+   cd yourproject
+
+3. Install dependencies:
+   ```bash
+   npm install
+   
+4. For iOS
+   ```bash
+   cd ios && pod install
+   npm run ios
+   
+5. For Android
+   ```bash
+   npm run android
+
+## Technologies Used
+
+ **React Native & Typescript**: For building the mobile application and supporting both Android and iOS platforms
+
+ **Axios**: For making API calls to fetch weather data and location information
+
+ **Jest & RNTL**: For writing and running test cases.
+
