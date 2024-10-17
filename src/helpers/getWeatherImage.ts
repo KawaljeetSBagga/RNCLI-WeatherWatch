@@ -6,7 +6,7 @@ type WeatherImage = Record<
   }
 >;
 
-type WeatherCode =
+export type WeatherCode =
   | '0'
   | '1'
   | '2'
@@ -328,8 +328,76 @@ const items: Record<WeatherCode, WeatherImage> = {
  * @param weatherCode The WMO weather code
  * @returns A "day" image representation of the WMO weather code
  */
-function getWeatherImage(weatherCode: WeatherCode) {
+function getWeatherImage(weatherCode: WeatherCode | undefined) {
   // Write implementation for this function to return the "day" image for a given weather code.
+  if (weatherCode) {
+    // Check if the weather code exists in the items object
+    if (items[weatherCode]) {
+      // Return the day image for the given weather code
+      return items[weatherCode].day.image;
+    }
+  }
+  // If the weather code doesn't exist, return a default image
+  return 'https://openweathermap.org/img/wn/01d@2x.png'; // Default sunny image
 }
+
+// Get the current day
+export const getCurrentDayName = (): string => {
+  const today = new Date();
+  return today.toLocaleDateString('en-US', {weekday: 'long'});
+};
+
+// Get upcoming days
+export const getDayName = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {weekday: 'long'}); // Returns the day name
+};
+
+// Function to calculate the average rounded up temperature
+export const calculateAverageTemperature = (
+  max: number,
+  min: number,
+): number => {
+  return Math.round((max + min) / 2); // Round the average temperature
+};
+
+export const getWeatherDescription = (weatherCode: WeatherCode | undefined) => {
+  if (weatherCode) {
+    // Check if the weather code exists in the items object
+    if (items[weatherCode]) {
+      // Return the day description for the given weather code
+      return items[weatherCode].day.description;
+    }
+  }
+  // If the weather code doesn't exist, return a default description
+  return 'Sunny'; // Default sunny description
+};
+
+export const getWeatherCodeByTemperature = (
+  averageTemp: number,
+): WeatherCode => {
+  if (averageTemp >= 30) {
+    return '0'; // Sunny
+  }
+  if (averageTemp >= 25) {
+    return '1'; // Mainly Sunny
+  }
+  if (averageTemp >= 20) {
+    return '2'; // Partly Cloudy
+  }
+  if (averageTemp >= 15) {
+    return '3'; // Cloudy
+  }
+  if (averageTemp >= 10) {
+    return '45'; // Foggy
+  }
+  if (averageTemp >= 5) {
+    return '51'; // Light Drizzle
+  }
+  if (averageTemp >= 0) {
+    return '61'; // Light Rain
+  }
+  return '71'; // Light Snow (assumes below 0)
+};
 
 export default getWeatherImage;
